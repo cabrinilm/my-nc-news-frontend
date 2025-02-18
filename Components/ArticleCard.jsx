@@ -2,9 +2,10 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Comment } from "./Comment";
 export const ArticleCard = () => {
   const { id } = useParams();
-  console.log(id);
+ 
   const [selectArticleById, setSelectArticleById] = useState(null);
   const [loading, setLoading] = useState(true)
 
@@ -15,7 +16,7 @@ export const ArticleCard = () => {
           `https://mysocial-513n.onrender.com/api/articles/${id}`
         );
         setSelectArticleById(response.data.articles);
-        console.log(response.data.articles);
+        
       } catch (error) {
         console.log("Error fetching article", error);
       } finally {
@@ -39,6 +40,7 @@ export const ArticleCard = () => {
         </div>
         <p className="author-name">by : @{selectArticleById.author}</p>
       </div>
+      <Comment />
     </div>
   );
 };

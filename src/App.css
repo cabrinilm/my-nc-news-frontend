@@ -128,8 +128,10 @@ h2 {
   
   .author-name {
     font-size: 1.2rem;
-    color: #555;
+    color: #007bff;
     text-align: right;
+    cursor: pointer; 
+    
   }
   
   
@@ -148,4 +150,53 @@ h2 {
 
   /*------------>  END SINGLE ARTICLECARD <------------- */
   
+  /*------------>  COMMENTS  <------------- */
+
   
+.comments-box {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+ 
+  .comments-box h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+ 
+  .comment-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+  .comment-item p strong {
+    color: #007bff;
+    cursor: pointer; 
+    transition: transform 0.2s ease-in-out; 
+    display: inline-block; 
+  }
+  
+ 
+  .comment-item p strong:hover {
+    transform: scale(1.1);
+  }
+  
+  
+  .comment-item p {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 5px;
+  }
+  
+   /*------------>  END COMMENTS  <------------- */

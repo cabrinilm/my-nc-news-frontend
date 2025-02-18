@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getArticles } from "../api"; 
-
+import Loading from "./Loading";
 export const ArticlesCard = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,7 +22,7 @@ export const ArticlesCard = () => {
     fetchArticles();
   }, []); 
 
-  if (loading) return <div>Loading...</div>; 
+  if (loading) return <Loading/>
 
   return (
     <>

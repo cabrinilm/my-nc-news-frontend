@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getCommentsByArticleId } from "../api"; 
+import Loading from "./Loading";
 
 export const Comment = () => {
   const { id } = useParams();
@@ -23,7 +24,7 @@ export const Comment = () => {
     fetchComments();
   }, [id]);
 
-  if (loading) return <div>Loading comments...</div>;
+  if (loading) return <Loading/>;
 
   if (comments.length === 0) return <p>No comments yet.</p>;
 

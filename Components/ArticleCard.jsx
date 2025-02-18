@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getArticleById } from "../api"; 
 import { Comment } from "./Comment";
-
+import  Loading  from "./Loading"
 export const ArticleCard = () => {
   const { id } = useParams(); 
 
@@ -26,7 +26,7 @@ export const ArticleCard = () => {
     fetchArticleData();
   }, [id]); 
 
-  if (loading) return <div>Loading...</div>; 
+  if (loading) return <Loading/>
   return (
     <div className="article-page">
       <Link to="/" className="back-link">

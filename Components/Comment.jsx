@@ -1,31 +1,32 @@
+// Comment.js
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams } from "react-router-dom";
+import { getCommentsByArticleId } from "../api"; 
+import Loading from "./Loading";
 
 export const Comment = () => {
-  const { id } = useParams(); 
+  const { id } = useParams();
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const response = await axios.get(
-          `https://mysocial-513n.onrender.com/api/articles/${id}/comments`
-        );
-        setComments(response.data.comments); 
+        const commentsData = await getCommentsByArticleId(id); 
+       
+        setComments(commentsData.comments); 
       } catch (error) {
         console.log("Error fetching comments", error);
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     };
     fetchComments();
   }, [id]);
 
-  if (loading) return <div>Loading comments...</div>;
+  if (loading) return <Loading/>;
 
-  if (comments.length === 0) return <p>No comments yet.</p>; 
+  if (comments.length === 0) return <p>No comments yet.</p>;
 
   return (
     <div className="comments-box">
@@ -38,3 +39,4 @@ export const Comment = () => {
     </div>
   );
 };
+

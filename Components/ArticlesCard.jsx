@@ -1,44 +1,43 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+// ArticlesCard.js
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import { getArticles } from "../api"; 
+import Loading from "./Loading";
 export const ArticlesCard = () => {
-  const API_URL = "https://mysocial-513n.onrender.com";
-  const [getArticles, setGetArticles] = useState([]);
-  const [loading, setLoading] = useState(true)
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await axios.get(`${API_URL}/api/articles`);
-
-        setGetArticles(response.data.articles || []);
+        const articlesData = await getArticles(); 
+        setArticles(articlesData.articles || []); 
       } catch (error) {
-        console.log("Error", error);
+        console.log("Error fetching articles", error);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     };
+
     fetchArticles();
-  }, []);
+  }, []); 
 
-   if(loading) return <div>Loading...</div>;
-
+  if (loading) return <Loading/>
 
   return (
     <>
       <h2>Articles List</h2>
       <div className="articles-container">
-        {getArticles.map((article) => (
+        {articles.map((article) => (
           <Link
-            to={`/article/${article.article_id}`}
+            to={`/article/${article.article_id}`} 
             key={article.article_id}
-            className="article-card"
+            className="article-card" 
           >
-            <img src={article.article_img_url} alt={article.title} />
+            <img src={article.article_img_url} alt={article.title} /> 
             <div>
-              <p className="author">{article.author}</p>
-              <p className="title">{article.title}"</p>
+              <p className="author">{article.author}</p> 
+              <p className="title">{article.title}</p> 
             </div>
           </Link>
         ))}

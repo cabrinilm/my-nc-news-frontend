@@ -1,33 +1,32 @@
-import axios from "axios";
+// ArticleCard.js
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import { getArticleById } from "../api"; 
 import { Comment } from "./Comment";
+import  Loading  from "./Loading"
 export const ArticleCard = () => {
-  const { id } = useParams();
- 
+  const { id } = useParams(); 
+
   const [selectArticleById, setSelectArticleById] = useState(null);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchArticleById = async () => {
+    const fetchArticleData = async () => {
       try {
-        const response = await axios.get(
-          `https://mysocial-513n.onrender.com/api/articles/${id}`
-        );
-        setSelectArticleById(response.data.articles);
-        
+       
+        const articleData = await getArticleById(id);
+        setSelectArticleById(articleData.articles); 
       } catch (error) {
         console.log("Error fetching article", error);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     };
-    fetchArticleById();
-  }, [id]);
 
-  if (loading) return <div>Loading...</div>;
+    fetchArticleData();
+  }, [id]); 
 
+  if (loading) return <Loading/>
   return (
     <div className="article-page">
       <Link to="/" className="back-link">
@@ -40,7 +39,8 @@ export const ArticleCard = () => {
         </div>
         <p className="author-name">by : @{selectArticleById.author}</p>
       </div>
-      <Comment />
+      <Comment /> 
     </div>
   );
 };
+

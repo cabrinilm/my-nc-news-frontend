@@ -162,7 +162,14 @@ h2 {
     line-height: 1.8;
     margin-bottom: 20px;
   }
-  
+ 
+  #articlebody{
+
+   color:#555
+
+  }
+
+
   .author-name {
     font-size: 1.2rem;
     color: #007bff;

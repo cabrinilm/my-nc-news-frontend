@@ -35,7 +35,7 @@ export const ArticleCard = () => {
       <div className="article-box">
         <h1 className="article-title">{selectArticleById.title}</h1>
         <div className="article-body">
-          <p>{selectArticleById.body}</p>
+          <p id="articlebody">{selectArticleById.body}</p>
         </div>
         <p className="author-name">by : @{selectArticleById.author}</p>
       </div>

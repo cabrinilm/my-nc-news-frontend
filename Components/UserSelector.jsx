@@ -2,8 +2,10 @@ import { useState } from "react";
 import { useUser } from "../context/UserAccountProvider";
 
 export const UserSelector = () => {
-  const { setUser } = useUser();
+  const { user, setUser } = useUser(); 
   const [selectedUser, setSelectedUser] = useState("");
+
+  console.log("User in context:", user); 
 
   const handleUserSelect = (event) => {
     setSelectedUser(event.target.value);
@@ -11,7 +13,7 @@ export const UserSelector = () => {
 
   const handleLogin = () => {
     if (selectedUser) {
-      setUser(selectedUser);
+      setUser({ username: selectedUser }); 
     }
   };
 
@@ -25,6 +27,7 @@ export const UserSelector = () => {
       <button onClick={handleLogin} disabled={!selectedUser}>
         Login
       </button>
+      <p>Logged in as: {user?.username || "None"}</p> 
     </div>
   );
 };

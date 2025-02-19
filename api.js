@@ -57,3 +57,15 @@ export const addComment = async (articleId, commentData) => {
     throw error; 
   }
 };
+
+
+
+export const deleteCommentById = async (commentId) => {
+  try {
+    const response = await axios.delete(`${API_BASE_URL}comments/${commentId}`);
+    return response.data; 
+  } catch (error) {
+    console.error("Error deleting comment:", error);
+    throw error; 
+  }
+};

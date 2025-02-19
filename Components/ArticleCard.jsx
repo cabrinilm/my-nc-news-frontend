@@ -57,7 +57,7 @@ export const ArticleCard = () => {
         <div className="article-body">
           <p id="articlebody">{selectArticleById.body}</p>
         </div>
-        <button onClick={addLike}>
+        <button className="like-button" onClick={addLike}>
           <FontAwesomeIcon icon={faHeart} />
           <span>{likes}</span>
         </button>

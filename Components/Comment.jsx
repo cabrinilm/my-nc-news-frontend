@@ -1,9 +1,8 @@
-// Comment.js
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getCommentsByArticleId } from "../api"; 
 import Loading from "./Loading";
-
+import { FormComment } from "./FormComment";
 
 export const Comment = () => {
   const { id } = useParams();
@@ -13,9 +12,8 @@ export const Comment = () => {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const commentsData = await getCommentsByArticleId(id); 
-       
-        setComments(commentsData.comments); 
+        const commentsData = await getCommentsByArticleId(id);
+        setComments(commentsData.comments);
       } catch (error) {
         console.log("Error fetching comments", error);
       } finally {
@@ -25,13 +23,20 @@ export const Comment = () => {
     fetchComments();
   }, [id]);
 
-  if (loading) return <Loading/>;
+ 
+  const handleAddComment = (newComment) => {
+    setComments((prevComments) => [newComment, ...prevComments]);
+  };
+
+  if (loading) return <Loading />;
 
   if (comments.length === 0) return <p>No comments yet.</p>;
 
   return (
     <div className="comments-box">
       <h3>Comments</h3>
+     
+      <FormComment articleId={id} onAddComment={handleAddComment} />
       {comments.map((comment) => (
         <div key={comment.comment_id} className="comment-item">
           <p><strong>@{comment.author}</strong>: {comment.body}</p>
@@ -40,4 +45,3 @@ export const Comment = () => {
     </div>
   );
 };
-

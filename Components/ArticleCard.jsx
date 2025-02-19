@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { getArticleById, updateArticleVotes } from "../api"; 
+import { getArticleById, getCommentsByArticleId, updateArticleVotes } from "../api"; 
 import { Comment } from "./Comment";
 import Loading from "./Loading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,6 +10,7 @@ export const ArticleCard = () => {
   const { id } = useParams(); 
 
   const [selectArticleById, setSelectArticleById] = useState(null);
+  const [comments, setComments] = useState([]);  
   const [likes, setLikes] = useState(0);
   const [loading, setLoading] = useState(true);
 
@@ -29,10 +30,19 @@ export const ArticleCard = () => {
   }, [id]); 
 
   useEffect(() => {
-    if (selectArticleById) {
-      setLikes(selectArticleById.votes); 
+    const fetchComments = async () => {
+      try {
+        const commentsData = await getCommentsByArticleId(id);
+        setComments(commentsData.comments);  
+      } catch (error) {
+        console.log("Error fetching comments", error);
+      }
+    };
+
+    if (id) {
+      fetchComments();
     }
-  }, [selectArticleById]);
+  }, [id]);
 
   const addLike = async () => {
     try {
@@ -43,6 +53,11 @@ export const ArticleCard = () => {
       console.error("Error when trying register vote:", error);
       setLikes((prevLikes) => prevLikes - 1); 
     }
+  };
+
+  
+  const handleAddComment = (newComment) => {
+    setComments((prevComments) => [...prevComments, newComment]);  
   };
 
   if (loading) return <Loading />;
@@ -63,8 +78,13 @@ export const ArticleCard = () => {
         </button>
         <p className="author-name">by : @{selectArticleById.author}</p>
       </div>
-      <Comment /> 
+      
+      
+      <Comment 
+        comments={comments} 
+        articleId={id} 
+        onAddComment={handleAddComment} 
+      />
     </div>
   );
 };
-

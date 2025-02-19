@@ -175,6 +175,7 @@ h2 {
     color: #007bff;
     text-align: right;
     cursor: pointer; 
+    margin-top: -25px;
     
   }
   
@@ -244,3 +245,37 @@ h2 {
   }
   
    /*------------>  END COMMENTS  <------------- */
+
+   /*------------>  LIKE BUTTON   <------------- */
+
+   .like-button {
+    background-color: #6BAED6; 
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex; 
+    align-items: center; 
+    gap: 6px; 
+    transition: background-color 0.3s ease-in-out;
+    margin-left: 20px;  
+  }
+  
+  .like-button:hover {
+    background-color: #5A9EC7; /
+  }
+  
+  .like-button span {
+    font-weight: bold;
+  }
+  
+
+
+
+
+
+
+
+   /*------------>  END LIKE BUTTON   <------------- */

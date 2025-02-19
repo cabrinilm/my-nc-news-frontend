@@ -19,6 +19,7 @@ export const ArticleCard = () => {
       try {
         const articleData = await getArticleById(id);
         setSelectArticleById(articleData.articles); 
+        setLikes(articleData.articles.votes)
       } catch (error) {
         console.log("Error fetching article", error);
       } finally {

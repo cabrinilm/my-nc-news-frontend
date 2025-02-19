@@ -1,23 +1,19 @@
 import { useEffect, useState } from "react";
 import { useUser } from "../context/UserAccountProvider";
 import { getUsers } from "../api";
+
 export const UserSelector = () => {
-  const { user, setUser } = useUser(); 
+  const { user, setUser } = useUser();
   const [selectedUser, setSelectedUser] = useState("");
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([]);
 
-  console.log("User in context:", user); 
-
-  useEffect(()  => {
- const fetchUsers =  async() => {
-   
-    const userList = await getUsers();
-    setUsers(userList);
- };
- fetchUsers();
-
-}, []);
-
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const userList = await getUsers();
+      setUsers(userList);
+    };
+    fetchUsers();
+  }, []);
 
   const handleUserSelect = (event) => {
     setSelectedUser(event.target.value);
@@ -25,7 +21,7 @@ export const UserSelector = () => {
 
   const handleLogin = () => {
     if (selectedUser) {
-      setUser({ username: selectedUser }); 
+      setUser({ username: selectedUser });
     }
   };
 

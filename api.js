@@ -24,3 +24,24 @@ export const getArticleById = async (id) => {
 export const getCommentsByArticleId = async (articleId) => {
   return fetchData(`/articles/${articleId}/comments`);
 };
+
+
+
+export const updateArticleVotes = async (articleId, increment) => {
+  try {
+    const response = await fetch(`${BASE_URL}/articles/${articleId}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ inc_votes: increment }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Error updating votes");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error req:", error);
+    throw error;
+  }
+};

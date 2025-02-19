@@ -1,11 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUser } from "../context/UserAccountProvider";
-
+import { getUsers } from "../api";
 export const UserSelector = () => {
   const { user, setUser } = useUser(); 
   const [selectedUser, setSelectedUser] = useState("");
+  const [users, setUsers] = useState([])
 
   console.log("User in context:", user); 
+
+  useEffect(()  => {
+ const fetchUsers =  async() => {
+   
+    const userList = await getUsers();
+    setUsers(userList);
+ };
+ fetchUsers();
+
+}, []);
+
 
   const handleUserSelect = (event) => {
     setSelectedUser(event.target.value);
@@ -22,12 +34,20 @@ export const UserSelector = () => {
       <label htmlFor="user">Choose a user:</label>
       <select id="user" value={selectedUser} onChange={handleUserSelect}>
         <option value="">Select user</option>
-        <option value="grumpy19">grumpy19</option>
+        {users.map((user) => (
+          <option key={user.username} value={user.username}>
+            {user.username}
+          </option>
+        ))}
       </select>
       <button onClick={handleLogin} disabled={!selectedUser}>
         Login
       </button>
-      <p>Logged in as: {user?.username || "None"}</p> 
+      {user && (
+        <div className="user-logged-in">
+          <p>User logged in: {user.username}</p>
+        </div>
+      )}
     </div>
   );
 };

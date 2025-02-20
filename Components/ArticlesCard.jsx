@@ -13,7 +13,7 @@ export const ArticlesCard = () => {
     const fetchArticles = async () => {
       try {
         const articlesData = await getArticles(sortBy, order);
-        console.log(articlesData.articles)
+       
         setArticles(articlesData.articles || []);
       } catch (error) {
         console.log("Error fetching articles", error);

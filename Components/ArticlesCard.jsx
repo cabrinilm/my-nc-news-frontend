@@ -27,7 +27,7 @@ export const ArticlesCard = () => {
   return (
     <>
       <h2>Articles List</h2>
-      <div className="articles-container">
+       <div className="articles-container">
         {articles.map((article) => (
           <Link
             to={`/article/${article.article_id}`}

@@ -1,7 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
 const BASE_URL = "https://mysocial-513n.onrender.com/api";
-
 
 const fetchData = async (endpoint) => {
   try {
@@ -13,21 +12,17 @@ const fetchData = async (endpoint) => {
   }
 };
 
-
 export const getArticles = async () => {
   return fetchData("/articles");
 };
-
 
 export const getArticleById = async (id) => {
   return fetchData(`/articles/${id}`);
 };
 
-
 export const getCommentsByArticleId = async (articleId) => {
   return fetchData(`/articles/${articleId}/comments`);
 };
-
 
 export const updateArticleVotes = async (articleId, increment) => {
   try {
@@ -43,41 +38,46 @@ export const updateArticleVotes = async (articleId, increment) => {
   }
 };
 
-
-
 export const addComment = async (articleId, commentData) => {
   try {
     const response = await axios.post(
       `${BASE_URL}/articles/${articleId}/comments`,
       commentData
     );
-    return response.data; 
+    return response.data;
   } catch (error) {
     console.error("Error adding comment:", error);
-    throw error; 
+    throw error;
   }
 };
-
-
 
 export const deleteCommentById = async (commentId) => {
   try {
     const response = await axios.delete(`${BASE_URL}/comments/${commentId}`);
-    return response.data; 
+    return response.data;
   } catch (error) {
     console.error("Error deleting comment:", error);
-    throw error; 
+    throw error;
   }
 };
-
-
 
 export const getUsers = async () => {
   try {
     const response = await axios.get(`${BASE_URL}/users`);
-    return response.data.users; 
+    return response.data.users;
   } catch (error) {
     console.error("Error fetching users:", error);
+    return [];
+  }
+};
+
+export const getTopics = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/topics`);
+
+    return response.data.topics;
+  } catch (error) {
+    console.error("Error fetching topics:", error);
     return [];
   }
 };

@@ -1,3 +1,137 @@
+/*-------------> HEADER <----------------------*/
+
+.navBar {
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.navList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+
+.left,
+.right {
+  flex: 1;
+  display: flex;
+}
+
+.left {
+  justify-content: flex-start;
+}
+
+.right {
+  justify-content: flex-end;
+  padding-right: 30px;
+}
+
+.logo {
+  position: absolute; 
+  left: 48.5%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.navList svg {
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.navList svg:hover {
+  color: #007bff;
+}
+
+
+.menu {
+  position: absolute;
+  top: 60px;
+  left: 10px;
+  width: 200px;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  border-radius: 8px;
+  z-index: 9999; 
+}
+
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  padding: 10px 20px;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.menu li a:hover {
+  color: #007bff;
+}
+
+
+.menu {
+  position: fixed;
+  top: 60px; 
+  left: 10px;
+  width: 150px;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  border-radius: 8px;
+  z-index: 9999;
+}
+
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  padding: 10px 20px;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.menu li a:hover {
+  color: #007bff;
+}
+
+
+
+/*-------------> END HEADER <-------------------*/
+
+
+
 /*-------------> BASIC LOADING <--------------*/ 
 
 .loading-container {
@@ -363,78 +497,105 @@ h2 {
      
     /*------------> USER LOGIN <------------- */
     
-.user-selector {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  width: 300px;
-  margin: 20px auto;
-}
+    .user-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; 
+      background-color: #f4f4f4; 
+    }
+    
+    .user-selector {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background-color: white;
+      width: 280px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+      animation: fadeIn 0.3s ease-in-out; 
+    }
+    
+    .user-selector label {
+      font-weight: bold;
+      color: #333;
+    }
+    
+    .user-selector select {
+      padding: 8px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      width: 100%;
+      background-color: #fff;
+      transition: border 0.3s ease;
+    }
+    
+    .user-selector select:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+    
+    .user-selector button {
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .user-selector button:hover {
+      background-color: #0056b3;
+    }
+    
+    .user-selector button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+    
+    .user-logged-in {
+      margin-top: 12px;
+      padding: 10px;
+      background-color: #e7f3e7; 
+      border-radius: 5px;
+      color: #155724; 
+      font-weight: bold;
+      text-align: center;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+      font-size: 14px;
+    }
 
-.user-selector {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  width: 250px;  
-  margin: 20px auto;
-}
-
-
-.user-selector select {
-  padding: 6px;
-  font-size: 14px; 
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  width: 100%;
-  background-color: white;
-}
-
-
-.user-selector button {
-  padding: 8px 12px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 14px; 
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.user-selector button:hover {
-  background-color: #0056b3;
-}
-
-.user-selector button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-}
-
-
-.user-logged-in {
-  margin-top: 8px;
-  padding: 8px;
-  background-color: #e7f3e7;
-  border-radius: 5px;
-  color: #28a745;
-  font-weight: bold;
-  text-align: center;
-  width: 100%;
-  font-size: 14px;
-}
+    .user-logged-in svg {
+      font-size: 20px;
+    }
+    
+  
+    
+  
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
  /*------------>  END USER LOGIN <------------- */
 
-
+/*------------>  DELETE BUTTON <------------- */
 
     .delete-button {
       background-color: #f44336;
@@ -450,3 +611,91 @@ h2 {
     .delete-button:hover {
       background-color: #d32f2f;
     }
+
+
+    .success-message {
+      color: green;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+ /*------------>  END DELETE BUTTON <------------- */
+  
+/* ---------> TOPICS CARD <-----------------*/ 
+
+
+
+h2 {
+  margin-top: 80px; 
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+}
+
+
+.topics-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+  gap: 20px;
+  padding: 20px;
+  margin-top: 20px;
+  width: 100%; 
+  box-sizing: border-box;
+  justify-items: center; 
+ 
+}
+
+
+.topic-box {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+
+.topic-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+
+.topic-content {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.topic-content p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.topic {
+  text-align: center;
+}
+
+
+@media (min-width: 768px) {
+  .topics-container {
+    grid-template-columns: repeat(3, 1fr); 
+  }
+
+  h2 {
+    font-size: 1.8rem; 
+  }
+}
+

@@ -188,14 +188,14 @@ h2 {
 }
 
 .sort-controls label {
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   color: #333;
   display: inline-block;
 }
 
 .sort-select, .order-select {
   padding: 8px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   border-radius: 5px;
   border: 1px solid #ccc;
   width: 150px;

@@ -12,10 +12,21 @@ const fetchData = async (endpoint) => {
   }
 };
 
-export const getArticles = async () => {
-  return fetchData("/articles");
-};
 
+export const getArticles = async (sort_by = "created_at", order = "desc") => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/articles?sort_by=${sort_by}&order=${order}`
+    );
+    if (!response.ok) {
+      throw new Error(`Erro fetching articles: ${response.statusText}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error req:", error);
+    throw error;
+  }
+};
 export const getArticleById = async (id) => {
   return fetchData(`/articles/${id}`);
 };

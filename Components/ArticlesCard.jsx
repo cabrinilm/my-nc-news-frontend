@@ -40,7 +40,6 @@ export const ArticlesCard = () => {
           className="sort-select"
         >
           <option value="created_at">Date</option>
-          <option value="topic">Topic</option>
           <option value="votes">Votes</option>
           <option value="comment_count">Comment Count</option>
         </select>

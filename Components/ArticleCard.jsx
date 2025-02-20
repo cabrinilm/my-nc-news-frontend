@@ -5,6 +5,7 @@ import { Comment } from "./Comment";
 import Loading from "./Loading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import  NotFound from "./pages/NotFound"; 
 
 export const ArticleCard = () => {
   const { id } = useParams(); 
@@ -13,15 +14,21 @@ export const ArticleCard = () => {
   const [comments, setComments] = useState([]);  
   const [likes, setLikes] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false); 
 
   useEffect(() => {
     const fetchArticleData = async () => {
       try {
         const articleData = await getArticleById(id);
         setSelectArticleById(articleData.articles); 
-        setLikes(articleData.articles.votes)
+        setLikes(articleData.articles.votes);
+        setError(false); 
       } catch (error) {
-        console.log("Error fetching article", error);
+        if (error.response && error.response.status === 404) {
+          setError(true); 
+        } else {
+          console.log("Error fetching article", error);
+        }
       } finally {
         setLoading(false);
       }
@@ -31,19 +38,21 @@ export const ArticleCard = () => {
   }, [id]); 
 
   useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const commentsData = await getCommentsByArticleId(id);
-        setComments(commentsData.comments);  
-      } catch (error) {
-        console.log("Error fetching comments", error);
-      }
-    };
+    if (!error) {
+      const fetchComments = async () => {
+        try {
+          const commentsData = await getCommentsByArticleId(id);
+          setComments(commentsData.comments);  
+        } catch (error) {
+          console.log("Error fetching comments", error);
+        }
+      };
 
-    if (id) {
-      fetchComments();
+      if (id) {
+        fetchComments();
+      }
     }
-  }, [id]);
+  }, [id, error]);
 
   const addLike = async () => {
     try {
@@ -51,18 +60,18 @@ export const ArticleCard = () => {
       const updatedArticle = await updateArticleVotes(id, 1);
       setLikes(updatedArticle.article.votes); 
     } catch (error) {
-      console.error("Error when trying register vote:", error);
+      console.error("Error when trying to register vote:", error);
       setLikes((prevLikes) => prevLikes - 1); 
     }
   };
 
-  
   const handleAddComment = (newComment) => {
     setComments((prevComments) => [...prevComments, newComment]);  
   };
 
   if (loading) return <Loading />;
-  
+  if (error) return <NotFound />; 
+
   return (
     <div className="article-page">
       <Link to="/" className="back-link">
@@ -79,7 +88,6 @@ export const ArticleCard = () => {
         </button>
         <p className="author-name">by : @{selectArticleById.author}</p>
       </div>
-      
       
       <Comment 
         comments={comments} 

@@ -718,3 +718,63 @@ h2 {
   }
 }
 
+/* --------->   END TOPICS CARD <-----------------*/ 
+/* --------->   NOT FOUND <-----------------*/ 
+
+
+
+.not-found-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+  margin: 0;
+}
+
+.not-found-box {
+  background-color: white;
+  border: 2px solid red;
+  padding: 30px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  animation: pulse 1.5s infinite;
+}
+
+.not-found-box h2 {
+  font-size: 24px;
+  margin: 0 0 15px;
+}
+
+.not-found-box p {
+  font-size: 16px;
+}
+
+.not-found-box a {
+  color: red;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.not-found-box a:hover {
+  text-decoration: underline;
+}
+
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+
+
+/* --------->  END NOT FOUND <-----------------*/ 

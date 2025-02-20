@@ -3,9 +3,9 @@ import { ArticlesCard } from "../Components/ArticlesCard"
 import { ArticleCard } from "../Components/ArticleCard"
 import './App.css'
 import { UserAccountProvider } from "../context/UserAccountProvider";
-import { UserSelector } from "../Components/UserSelector";
-import { Header } from "../Components/Header";
 
+import { Header } from "../Components/Header";
+import { Users } from "../Components/pages/Users";
 function App() {
   
 
@@ -13,8 +13,8 @@ function App() {
     <UserAccountProvider>
      <Router>
      <Header/>
-      <UserSelector/>
       <Routes>
+        <Route path="/Users" element={<Users/>} />
       <Route path="/" element={<ArticlesCard/>} />
       <Route path="/article/:id" element={<ArticleCard />} />
       </Routes>

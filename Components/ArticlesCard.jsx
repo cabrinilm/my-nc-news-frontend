@@ -33,18 +33,24 @@ export const ArticlesCard = () => {
 
       
       <div className="sort-controls">
-        <select
-          className="sort-by"
-          value={sortBy}
+      <label htmlFor="sortBy">Sort by:</label>
+        <select 
+          id="sortBy" 
+          value={sortBy} 
           onChange={(e) => setSortBy(e.target.value)}
         >
           <option value="created_at">Date</option>
+          <option value="title">Title</option>
+          <option value="topic">Topic</option>
+          <option value="votes">Votes</option>
+          <option value="comment_count">Comment Count</option>
          
         </select>
 
-        <select
-          className="order"
-          value={order}
+        <label htmlFor="order">Order:</label>
+        <select 
+          id="order" 
+          value={order} 
           onChange={(e) => setOrder(e.target.value)}
         >
           <option value="asc">Ascending</option>
@@ -63,6 +69,8 @@ export const ArticlesCard = () => {
             <div>
               <p className="author">{article.author}</p>
               <p className="title">{article.title}</p>
+              <p className="votes">Votes: {article.votes}</p>
+              <p className="comment-count">Comments: {article.comment_count}</p>
             </div>
           </Link>
         ))}

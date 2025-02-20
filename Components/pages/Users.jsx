@@ -2,6 +2,11 @@
  import { useUser } from "../../context/UserAccountProvider";
  import { getUsers } from "../../api";
  
+ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+ import {
+    faUserCheck
+  } from "@fortawesome/free-solid-svg-icons";
+ 
  export const Users = () => {
    const { user, setUser } = useUser();
    const [selectedUser, setSelectedUser] = useState("");
@@ -26,6 +31,7 @@
    };
  
    return (
+     <div className="user-container">
      <div className="user-selector">
        <label htmlFor="user">Choose a user:</label>
        <select id="user" value={selectedUser} onChange={handleUserSelect}>
@@ -41,9 +47,11 @@
        </button>
        {user && (
          <div className="user-logged-in">
+             <FontAwesomeIcon icon={faUserCheck} />
            <p>User logged in: {user.username}</p>
          </div>
        )}
+     </div>
      </div>
    );
  };

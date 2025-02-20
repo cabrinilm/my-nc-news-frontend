@@ -57,3 +57,27 @@ export const addComment = async (articleId, commentData) => {
     throw error; 
   }
 };
+
+
+
+export const deleteCommentById = async (commentId) => {
+  try {
+    const response = await axios.delete(`${BASE_URL}/comments/${commentId}`);
+    return response.data; 
+  } catch (error) {
+    console.error("Error deleting comment:", error);
+    throw error; 
+  }
+};
+
+
+
+export const getUsers = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/users`);
+    return response.data.users; 
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    return [];
+  }
+};

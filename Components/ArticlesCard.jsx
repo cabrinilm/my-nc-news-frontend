@@ -30,34 +30,33 @@ export const ArticlesCard = () => {
   return (
     <>
       <h2>Articles List</h2>
-
-      
+  
       <div className="sort-controls">
-      <label htmlFor="sortBy">Sort by:</label>
+        <label htmlFor="sortBy">Sort by:</label>
         <select 
           id="sortBy" 
           value={sortBy} 
           onChange={(e) => setSortBy(e.target.value)}
+          className="sort-select"
         >
           <option value="created_at">Date</option>
-          <option value="title">Title</option>
           <option value="topic">Topic</option>
           <option value="votes">Votes</option>
           <option value="comment_count">Comment Count</option>
-         
         </select>
-
+  
         <label htmlFor="order">Order:</label>
         <select 
           id="order" 
           value={order} 
           onChange={(e) => setOrder(e.target.value)}
+          className="order-select"
         >
           <option value="asc">Ascending</option>
           <option value="desc">Descending</option>
         </select>
       </div>
-
+  
       <div className="articles-container">
         {articles.map((article) => (
           <Link
@@ -77,4 +76,5 @@ export const ArticlesCard = () => {
       </div>
     </>
   );
+  
 };

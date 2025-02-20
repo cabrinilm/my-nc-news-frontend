@@ -40,10 +40,10 @@ export function Header() {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/categories">Topics</Link>
+              <Link to="/topics">Topics</Link>
             </li>
             <li>
-              <Link to="/users">User</Link>
+              <Link to="/users">Users</Link>
             </li>
           </ul>
         </div>

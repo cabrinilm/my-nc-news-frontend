@@ -6,6 +6,7 @@ import { UserAccountProvider } from "../context/UserAccountProvider";
 
 import { Header } from "../Components/Header";
 import { Users } from "../Components/pages/Users";
+import { TopicCard } from "../Components/TopicCard";
 function App() {
   
 
@@ -14,9 +15,10 @@ function App() {
      <Router>
      <Header/>
       <Routes>
-        <Route path="/Users" element={<Users/>} />
+        <Route path="/users" element={<Users/>} />
       <Route path="/" element={<ArticlesCard/>} />
       <Route path="/article/:id" element={<ArticleCard />} />
+      <Route path="/topics" element={<TopicCard/>} />
       </Routes>
      </Router>
      </UserAccountProvider>

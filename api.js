@@ -81,3 +81,19 @@ export const getUsers = async () => {
     return [];
   }
 };
+
+
+export const getTopics = async () => {
+  
+  try{
+     
+    
+    const response = await axios.get(`${BASE_URL}/topics`);
+     console.log(response.data.topics)
+    return response.data.topics;
+
+  } catch (error) {
+    console.error("Error fetching topics:", error);
+    return [];
+  } 
+}

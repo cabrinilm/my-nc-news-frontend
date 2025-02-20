@@ -6,14 +6,10 @@ export const FormComment = ({ articleId, onAddComment }) => {
   const [username, setUsername] = useState("");
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(""); 
+  const [isSubmitting, setIsSubmitting] = useState(false); 
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-  };
-
-  const handleCommentChange = (e) => {
-    setComment(e.target.value);
-  };
+  const handleUsernameChange = (e) => setUsername(e.target.value);
+  const handleCommentChange = (e) => setComment(e.target.value);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,6 +18,8 @@ export const FormComment = ({ articleId, onAddComment }) => {
       setError("Both username and comment are required!");
       return;
     }
+
+    setIsSubmitting(true);
 
     const newComment = { username, body: comment };
 
@@ -32,14 +30,16 @@ export const FormComment = ({ articleId, onAddComment }) => {
       setComment("");  
       setUsername("");  
       setError(null);  
-      setSuccessMessage("Comment added successfully! ✅"); 
+      setSuccessMessage("Comment added successfully! ✅");
 
       setTimeout(() => {
         setSuccessMessage(""); 
       }, 3000);
-
+      
     } catch (error) {
       setError("Username or comment invalid, please try again.");
+    } finally {
+      setIsSubmitting(false); 
     }
   };
 
@@ -54,6 +54,7 @@ export const FormComment = ({ articleId, onAddComment }) => {
         onChange={handleUsernameChange}
         required
         className="form-input"
+        disabled={isSubmitting}
       />
       <label htmlFor="comment" className="form-label">Comment</label>
       <textarea
@@ -63,10 +64,13 @@ export const FormComment = ({ articleId, onAddComment }) => {
         onChange={handleCommentChange}
         required
         className="form-textarea"
+        disabled={isSubmitting} 
       />
       {error && <p className="error">{error}</p>}
       {successMessage && <p className="success">{successMessage}</p>}
-      <button type="submit" className="form-button">Submit Comment</button>
+      <button type="submit" className="form-button" disabled={isSubmitting}>
+        {isSubmitting ? "Submitting..." : "Submit Comment"}
+      </button>
     </form>
   );
 };

@@ -39,7 +39,7 @@
 
 .logo {
   position: absolute; 
-  left: 50%;
+  left: 48.5%;
   transform: translateX(-50%);
   font-size: 1.2rem;
   font-weight: bold;
@@ -594,7 +594,7 @@ h2 {
     
  /*------------>  END USER LOGIN <------------- */
 
-
+/*------------>  DELETE BUTTON <------------- */
 
     .delete-button {
       background-color: #f44336;
@@ -610,3 +610,84 @@ h2 {
     .delete-button:hover {
       background-color: #d32f2f;
     }
+
+ /*------------>  END DELETE BUTTON <------------- */
+  
+/* ---------> TOPICS CARD <-----------------*/ 
+
+
+
+h2 {
+  margin-top: 80px; 
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+}
+
+
+.topics-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+  gap: 20px;
+  padding: 20px;
+  margin-top: 20px;
+  width: 100%; 
+  box-sizing: border-box;
+  justify-items: center; 
+ 
+}
+
+
+.topic-box {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+
+.topic-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+
+.topic-content {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.topic-content p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.topic {
+  text-align: center;
+}
+
+
+@media (min-width: 768px) {
+  .topics-container {
+    grid-template-columns: repeat(3, 1fr); 
+  }
+
+  h2 {
+    font-size: 1.8rem; 
+  }
+}
+

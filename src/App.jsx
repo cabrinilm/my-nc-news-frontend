@@ -8,6 +8,7 @@ import { Header } from "../Components/Header";
 import { Users } from "../Components/pages/Users";
 import { TopicCard } from "../Components/pages/TopicCard";
 import { ArticlesByTopic } from "../Components/pages/ArticlesByTopic";
+import  NotFound  from "../Components/pages/NotFound";
 function App() {
   return (
     <UserAccountProvider>
@@ -19,6 +20,8 @@ function App() {
           <Route path="/article/:id" element={<ArticleCard />} />
           <Route path="/topics" element={<TopicCard />} />
           <Route path="/topics/:topic_name" element={<ArticlesByTopic />} />
+          <Route path="/not-found" element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </UserAccountProvider>

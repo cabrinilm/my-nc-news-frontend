@@ -29,7 +29,7 @@ To run this project locally, ensure you have the following installed:
 
 3. **Run the development server:**
 
-npm run dev
+   npm run dev
 
 4. **Open in browser**
 

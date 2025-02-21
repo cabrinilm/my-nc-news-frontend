@@ -5,6 +5,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import logo from "../src/assets/mindarticles-logo.png"
 
 export function Header() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -22,7 +23,7 @@ export function Header() {
               <FontAwesomeIcon onClick={handleMenu} icon={faBars} />
             </li>
             <li className="logo">
-              <h1>LOGO</h1>
+            <img src={logo} alt="mindarticles logo" className="mindarticles-logo" />
             </li>
             <li className="right">
               <Link to="/">

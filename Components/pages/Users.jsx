@@ -4,7 +4,7 @@ import { getUsers } from "../../api";
 import Loading from "../Loading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCheck } from "@fortawesome/free-solid-svg-icons";
-
+import { CreateNewUser } from "../CreateNewUser";
 export const Users = () => {
   const { user, setUser } = useUser();
   const [selectedUser, setSelectedUser] = useState("");
@@ -38,7 +38,9 @@ export const Users = () => {
   };
 
   return (
+     
     <div className="user-container">
+       <CreateNewUser/> 
       <div className="user-selector">
         <label htmlFor="user">Choose a user:</label>
         <select id="user" value={selectedUser} onChange={handleUserSelect}>
